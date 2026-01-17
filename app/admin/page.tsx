@@ -212,7 +212,7 @@ function AdminContent() {
   if (!isAuthenticated) {
     return (
       <main className="min-h-screen bg-emerald-50 dark:bg-gray-900">
-        <Header />
+        <Header isAdmin />
         <div className="pt-[80px] px-4 flex items-center justify-center min-h-screen">
           <motion.div
             initial={{ opacity: 0, y: 20 }}
@@ -292,7 +292,7 @@ function AdminContent() {
 
   return (
     <main className="min-h-screen bg-emerald-50 dark:bg-gray-900">
-      <Header onLogout={() => setIsAuthenticated(false)} />
+      <Header isAdmin onLogout={() => setIsAuthenticated(false)} />
       <div className="pt-[70px] pb-8 px-4 md:px-8">
         <div className="max-w-7xl mx-auto">
           {/* Header */}

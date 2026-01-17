@@ -3,12 +3,14 @@
 import { useState, useEffect, useRef } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import Link from 'next/link';
+import UserGuide from './UserGuide';
 
 interface HeaderProps {
   showAdminLink?: boolean;
   onLogout?: () => void;
   proximityAlertsEnabled?: boolean;
   onToggleProximityAlerts?: () => void;
+  isAdmin?: boolean;
 }
 
 export default function Header({
@@ -16,10 +18,12 @@ export default function Header({
   onLogout,
   proximityAlertsEnabled = true,
   onToggleProximityAlerts,
+  isAdmin = false,
 }: HeaderProps) {
   const [isDark, setIsDark] = useState(false);
   const [mounted, setMounted] = useState(false);
   const [menuOpen, setMenuOpen] = useState(false);
+  const [showGuide, setShowGuide] = useState(false);
   const menuRef = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
@@ -131,6 +135,20 @@ export default function Header({
                   {isDark ? 'Light Mode' : 'Dark Mode'}
                 </button>
 
+                {/* Guide Button */}
+                <button
+                  onClick={() => {
+                    setShowGuide(true);
+                    setMenuOpen(false);
+                  }}
+                  className="w-full flex items-center gap-3 px-4 py-3 text-sm text-gray-700 dark:text-gray-200 hover:bg-gray-100 dark:hover:bg-gray-700 transition-colors border-t border-gray-100 dark:border-gray-700"
+                >
+                  <svg className="w-5 h-5 text-blue-500" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M13 16h-1v-4h-1m1-4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
+                  </svg>
+                  How to Use
+                </button>
+
                 {/* Proximity Alerts Toggle */}
                 {onToggleProximityAlerts && (
                   <button
@@ -187,6 +205,13 @@ export default function Header({
           </AnimatePresence>
         </div>
       </div>
+
+      {/* User Guide Dialog */}
+      <UserGuide
+        isOpen={showGuide}
+        onClose={() => setShowGuide(false)}
+        isAdmin={isAdmin}
+      />
     </header>
   );
 }
