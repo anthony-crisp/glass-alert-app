@@ -90,19 +90,19 @@ export default function WelcomeSplash() {
             >
               <div className="space-y-5 text-center">
                 <p className="text-white/95 leading-relaxed text-[15px]">
-                  Broken glass on pavements can ruin a day (or a paw) in seconds.
+                  Broken glass lurking on pavements can turn a lovely walk into a nightmare for our dogs.
                 </p>
 
                 <p className="text-white/95 leading-relaxed text-[15px]">
-                  Spot some? Tap{' '}
+                  Spot it? Tap{' '}
                   <span className="inline-flex items-center justify-center w-7 h-7 bg-white/25 rounded-full text-sm font-bold mx-0.5 align-middle shadow-inner">
                     +
                   </span>
-                  {' '}to report in 5 seconds — precise location, optional photo, done.
+                  {' '}to report straight away — location marked, photo optional.
                 </p>
 
                 <p className="text-white/95 leading-relaxed text-[15px]">
-                  Together we clear the paths for every dog in town.
+                  We're all in this together — keeping paws safe, one report at a time.
                 </p>
               </div>
             </motion.div>
