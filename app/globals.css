@@ -1,0 +1,153 @@
+@import "tailwindcss";
+
+/* Enable class-based dark mode for the toggle */
+@custom-variant dark (&:where(.dark, .dark *));
+
+/* Custom fonts */
+@font-face {
+  font-family: 'Cmas Play';
+  src: url('/fonts/CmasPlay.ttf') format('truetype');
+  font-weight: normal;
+  font-style: normal;
+  font-display: swap;
+}
+
+:root {
+  /* Nature-inspired color palette - greens and blues */
+  --color-primary: #2d6a4f;
+  --color-primary-light: #40916c;
+  --color-primary-dark: #1b4332;
+  --color-secondary: #52b788;
+  --color-accent: #74c69d;
+  --color-sky: #48cae4;
+  --color-sky-light: #90e0ef;
+
+  /* UI colors */
+  --color-danger: #dc2626;
+  --color-danger-light: #ef4444;
+  --color-warning: #f59e0b;
+  --color-success: #22c55e;
+
+  /* Background and foreground */
+  --background: #f0fdf4;
+  --foreground: #1b4332;
+  --card-bg: #ffffff;
+  --card-border: #d1fae5;
+}
+
+@theme inline {
+  --color-background: var(--background);
+  --color-foreground: var(--foreground);
+  --font-sans: var(--font-geist-sans);
+  --font-mono: var(--font-geist-mono);
+}
+
+@media (prefers-color-scheme: dark) {
+  :root {
+    --background: #022c22;
+    --foreground: #d1fae5;
+    --card-bg: #064e3b;
+    --card-border: #065f46;
+  }
+}
+
+/* Dark mode class override */
+.dark {
+  --background: #022c22;
+  --foreground: #d1fae5;
+  --card-bg: #064e3b;
+  --card-border: #065f46;
+}
+
+body {
+  background: var(--background);
+  color: var(--foreground);
+  font-family: var(--font-sans), Arial, Helvetica, sans-serif;
+  min-height: 100vh;
+  min-height: 100dvh;
+}
+
+/* Custom scrollbar */
+::-webkit-scrollbar {
+  width: 6px;
+  height: 6px;
+}
+
+::-webkit-scrollbar-track {
+  background: var(--background);
+}
+
+::-webkit-scrollbar-thumb {
+  background: var(--color-primary-light);
+  border-radius: 3px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: var(--color-primary);
+}
+
+/* Animation utilities */
+@keyframes fadeIn {
+  from { opacity: 0; }
+  to { opacity: 1; }
+}
+
+@keyframes slideUp {
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes pulse {
+  0%, 100% { opacity: 1; }
+  50% { opacity: 0.5; }
+}
+
+.animate-fade-in {
+  animation: fadeIn 0.3s ease-out;
+}
+
+.animate-slide-up {
+  animation: slideUp 0.3s ease-out;
+}
+
+.animate-pulse-slow {
+  animation: pulse 2s ease-in-out infinite;
+}
+
+/* Safe area for mobile devices */
+.safe-bottom {
+  padding-bottom: env(safe-area-inset-bottom, 20px);
+}
+
+.safe-top {
+  padding-top: env(safe-area-inset-top, 0);
+}
+
+/* Google Maps InfoWindow - make transparent so our card shows cleanly */
+.gm-style-iw-c {
+  padding: 0 !important;
+  background: transparent !important;
+  box-shadow: none !important;
+  border-radius: 0 !important;
+}
+
+.gm-style-iw-d {
+  overflow: visible !important;
+}
+
+/* Hide the white background container */
+.gm-style-iw-t::after {
+  display: none !important;
+}
+
+/* Style the close button to sit nicely on our card */
+.gm-style-iw-c button.gm-ui-hover-effect {
+  top: 2px !important;
+  right: 2px !important;
+}
